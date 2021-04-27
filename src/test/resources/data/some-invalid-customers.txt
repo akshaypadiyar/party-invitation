@@ -1,0 +1,5 @@
+{"user_id": 9, "name": "Jack Dempsey"}
+{"latitude": "53", "user_id": 13, "name": "Olive Ahearn", "longitude": "-7"}
+{"latitude": "53.0033946", "user_id": 39, "name": "Lisa Ahearn", "longitude": "-6.3877505"}
+{"latitude": "52.833502", "name": "David Behan", "longitude": "-8.522366"}
+{"latitude": "53.807778", "user_id": 28, "name": "Charlie Halligan", "longitude": "-7.714444"}

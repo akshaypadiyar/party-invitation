@@ -1,0 +1,15 @@
+server:
+  port: 9090
+
+customers:
+  data:
+    source: data/customers.txt
+
+  filtering:
+    location:
+      range: 100
+
+event:
+  location:
+    latitude: 53.339428
+    longitude: -6.257664
