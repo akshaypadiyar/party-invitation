@@ -16,38 +16,39 @@ Project was built using following tools & framework
 ### Java
 Run '*java --version*' to check version of java installed. Version should be >v14.
 
-Sample output:
-> java --version
-java 16 2021-03-16
-Java(TM) SE Runtime Environment (build 16+36-2231)
-Java HotSpot(TM) 64-Bit Server VM (build 16+36-2231, mixed mode, sharing)
+> java --version<br>
+java 16 2021-03-16<br>
+Java(TM) SE Runtime Environment (build 16+36-2231)<br>
+Java HotSpot(TM) 64-Bit Server VM (build 16+36-2231, mixed mode, sharing)<br>
 
 If not installed, it can downloaded from [here](https://www.oracle.com/java/technologies/javase-jdk16-downloads.html)
 
-Once installed add JAVA_HOME environment variable to installation home direction and %JAVA_HOME%\bin to PATH.
+Once installed add JAVA_HOME environment variable pointing to installation home directory and %JAVA_HOME%\bin to PATH.
 
 ### Maven
-Run '*mvn --version*' to check version of maven installed. Version should be >v3.5.
+Run '*mvn --version*' to check version of maven installed. Version should be >v3.5.  
 
-Sample output:
+If not installed, it can be downloaded from [here](https://maven.apache.org/download.cgi)
 
-> mvn --version
-Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)
-Maven home: C:\Tools\Maven\3.8.1\bin\..
-Java version: 16, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-16
-Default locale: en_IN, platform encoding: Cp1252
+Once installed add M2_HOME environment variable pointing to installation home directory and %M2_HOME%\bin to PATH
+
+> mvn --version <br>
+Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)  
+Maven home: C:\Tools\Maven\3.8.1\bin\..  
+Java version: 16, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-16  
+Default locale: en_IN, platform encoding: Cp1252  
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 
 ## Execution Steps
 
 ### Run the application
 
-#### Console Mode
+#### Option 1: Console Mode
 1. Navigate to project root (pom.xml) in terminal
 2. Run '**mvn install spring-boot:run -P console**'
 3. Output is generated in **output.json** file.
 
-#### REST endpoint
+#### Option 2: REST endpoint
 1. Navigate to project root (pom.xml) in terminal
 2. Run '**mvn install spring-boot:run -P web**'
 3. Open http://localhost:9090/invitees in Chrome / Firefox
@@ -124,8 +125,7 @@ List of customers can loading from *\<project_dir\>/src/main/resources/data/cust
 #### Measurement Units
 Distance unit can be changed between kilometres and miles. This can be done by updating 'units' to either 'kms' or 'miles'. *(default: kms)*.
 
-
-Overriding default values without changing config file
+### Overriding default values without changing config file
 
 To run application without changing config yml file, you can append below
 
@@ -135,15 +135,8 @@ Command
 * Multiple arguments can be provided separated by space.
 
 Some sample arguments:
---customers.sorting.strategy=proximity
---customers.sorting.reversed=true
---customers.filtering.location.range=200
---event.location.latitude=50.121
+--customers.sorting.strategy=proximity  
+--customers.sorting.reversed=true  
+--customers.filtering.location.range=200  
+--event.location.latitude=50.121  
 --application.measurement.units=miles
-
-
-
-
-
-
-
