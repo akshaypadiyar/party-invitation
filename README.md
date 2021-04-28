@@ -134,9 +134,8 @@ Command
 
 * Multiple arguments can be provided separated by space.
 
-Some sample arguments:
---customers.sorting.strategy=proximity  
---customers.sorting.reversed=true  
+Some sample arguments:  
+"--customers.sorting.strategy=name --customers.sorting.reversed=true"  
 --customers.filtering.location.range=200  
 --event.location.latitude=50.121  
 --application.measurement.units=miles
