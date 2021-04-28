@@ -11,7 +11,7 @@ public interface Parser<T> {
      * Parse text to a object
      * @param value Text value to be parsed
      * @return Return an object of type T
-     * @throws IOException
+     * @throws ParseException
      */
     T parse(String value) throws ParseException;
 }

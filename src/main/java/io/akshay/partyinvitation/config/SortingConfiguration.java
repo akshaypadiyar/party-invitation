@@ -7,15 +7,25 @@ import io.akshay.partyinvitation.services.location.EventLocationProvider;
 import io.akshay.partyinvitation.services.location.LocationService;
 import io.akshay.partyinvitation.strategy.sorting.CustomerNameSorting;
 import io.akshay.partyinvitation.strategy.sorting.CustomerProximitySorting;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Comparator;
 
 @Configuration
 public class SortingConfiguration {
+
+    @Value("${customers.sorting.reversed:false}")
+    private boolean reversed;
+
+    private Comparator<Customer> applyMode(Comparator<Customer> comparator) {
+        return reversed ? comparator.reversed() : comparator;
+    }
 
     /**
      * Sorting logic based on customer ID
@@ -25,7 +35,7 @@ public class SortingConfiguration {
     @Bean
     @ConditionalOnProperty(value = "customers.sorting.strategy", havingValue = "user-id", matchIfMissing = true)
     public Comparator<Customer> customerIdSorting() {
-        return Comparator.comparing(Customer::getId);
+        return applyMode(Comparator.comparing(Customer::getId));
     }
 
     /**
@@ -36,7 +46,7 @@ public class SortingConfiguration {
     @Bean
     @ConditionalOnProperty(value = "customers.sorting.strategy", havingValue = "name")
     public Comparator<Customer> customerNameSorting() {
-        return new CustomerNameSorting();
+        return applyMode(new CustomerNameSorting());
     }
 
     /**
@@ -49,7 +59,7 @@ public class SortingConfiguration {
     @Bean
     @ConditionalOnProperty(value = "customers.sorting.strategy", havingValue = "proximity")
     public Comparator<Customer> proximitySorting(EventLocationProvider eventLocationProvider, LocationService locationService) {
-        return new CustomerProximitySorting(eventLocationProvider, locationService);
+        return applyMode(new CustomerProximitySorting(eventLocationProvider, locationService));
     }
 
 
@@ -61,7 +71,6 @@ public class SortingConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public Comparator<Customer> compositeSortingStrategy() {
-        return customerNameSorting().thenComparing(customerIdSorting());
+        return applyMode(customerNameSorting().thenComparing(customerIdSorting()));
     }
-
 }

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  */
 public class SortingComposition implements Comparator<Customer> {
 
-    private Comparator<Customer> composed;
+    private final Comparator<Customer> composed;
 
     private SortingComposition(Comparator<Customer> composed) {
         this.composed = composed;
@@ -18,8 +18,8 @@ public class SortingComposition implements Comparator<Customer> {
 
     @SafeVarargs
     public static SortingComposition with(Comparator<Customer>... comparators) {
-        Comparator<Customer> composed = Stream.of(comparators).reduce(egalitarian(), Comparator::thenComparing);
-        return new SortingComposition(composed);
+        Comparator<Customer> combined = Stream.of(comparators).reduce(egalitarian(), Comparator::thenComparing);
+        return new SortingComposition(combined);
     }
 
     @Override

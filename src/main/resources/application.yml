@@ -1,15 +1,23 @@
+application:
+  measurement:
+    units: kms #Measurement units [Values: kms (default) / miles]
+
 server:
-  port: 9090
+  port: 9090 #Server port
 
 customers:
   data:
-    source: data/customers.txt
+    source: data/customers.txt #Data source for all customers
+
+  sorting:
+    strategy: user-id #Sort strategy [Values: user-id (default) / name / proximity]
+    reversed: false #Reverse the direction of sorting. [Values: true / false (default - ascending)]
 
   filtering:
     location:
-      range: 100
+      range: 100 #Filter distance from event location
 
 event:
   location:
-    latitude: 53.339428
-    longitude: -6.257664
+    latitude: 53.339428 #Latitude of event location
+    longitude: -6.257664 #Longitude of event location

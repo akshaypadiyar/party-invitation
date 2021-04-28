@@ -1,8 +1,6 @@
 package io.akshay.partyinvitation.services.invitation;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import io.akshay.partyinvitation.exception.InvitationRuntimeException;
-import io.akshay.partyinvitation.models.Customer;
 import io.akshay.partyinvitation.models.Person;
 
 import java.util.List;
@@ -12,5 +10,10 @@ import java.util.List;
  */
 public interface InvitationService {
 
-    List<Person> getInvitees() throws InvitationRuntimeException;
+    /**
+     * Get all invitees for an event
+     * @return List of {@link Person}
+     * @throws InvitationRuntimeException
+     */
+    List<? extends Person> getInvitees() throws InvitationRuntimeException;
 }

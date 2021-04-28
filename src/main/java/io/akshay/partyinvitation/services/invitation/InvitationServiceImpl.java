@@ -38,7 +38,7 @@ public final class InvitationServiceImpl implements InvitationService {
      * @return List of {@link Customer}
      */
     @Override
-    public List<Person> getInvitees() throws InvitationRuntimeException {
+    public List<? extends Person> getInvitees() throws InvitationRuntimeException {
         log.trace("Retrieving all customers");
 
         List<Customer> customers = null;

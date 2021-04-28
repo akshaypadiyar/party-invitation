@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventLocationProvider implements Provider<Location> {
 
-    private double latitude;
-    private double longitude;
+    private final double latitude;
+    private final double longitude;
 
     public EventLocationProvider(@Value("${event.location.latitude}") double latitude,
                                  @Value("${event.location.longitude}") double longitude) {

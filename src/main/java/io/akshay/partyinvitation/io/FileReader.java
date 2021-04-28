@@ -1,4 +1,4 @@
-package io.akshay.partyinvitation.repository;
+package io.akshay.partyinvitation.io;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,12 @@ public class FileReader {
     /**
      * Reads the given file and returns the content
      *
-     * @param fileUri {@link URI} of the file to read
+     * @param filePath {@link URI} of the file to read
      * @return Content as {@link List} of strings
      * @throws IOException
      */
-    public List<String> readFile(URI fileUri) throws IOException {
-        Path path = Path.of(fileUri);
+    public List<String> readFile(URI filePath) throws IOException {
+        Path path = Path.of(filePath);
         return Files.readAllLines(path);
     }
 }

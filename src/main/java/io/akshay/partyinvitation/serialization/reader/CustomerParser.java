@@ -16,8 +16,8 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class CustomerParser implements Parser<Customer> {
 
-    private ObjectMapper objectMapper;
-    private boolean skipInvalid;
+    private final ObjectMapper objectMapper;
+    private final boolean skipInvalid;
 
     public CustomerParser(@NotNull final ObjectMapper objectMapper,
                           @Value("${customers.data.skipInvalid:true}") final boolean skipInvalid) {
@@ -36,6 +36,7 @@ public class CustomerParser implements Parser<Customer> {
         try {
             return this.objectMapper.readValue(text, Customer.class);
         } catch (JsonProcessingException e) {
+            //Allows skipping of invalid entries where user_id and/or name are missing
             if (skipInvalid) {
                 log.error("Failed to parse customer from text..Skipped! Error: {}", e.getMessage());
                 return null;

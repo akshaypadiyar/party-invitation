@@ -3,6 +3,7 @@ package io.akshay.partyinvitation.repository;
 import io.akshay.partyinvitation.TestUtils;
 import io.akshay.partyinvitation.exception.InvitationRuntimeException;
 import io.akshay.partyinvitation.exception.ParseException;
+import io.akshay.partyinvitation.io.FileReader;
 import io.akshay.partyinvitation.models.Customer;
 import io.akshay.partyinvitation.serialization.reader.Parser;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,11 +1,13 @@
 package io.akshay.partyinvitation.repository;
 
+import io.akshay.partyinvitation.io.FileReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +28,7 @@ class FileReaderTest {
         assertLinesMatch(expectedLines, lines);
     }
 
-    @Test()
+    @Test
     void readInvalidFile() {
         assertThrows(IOException.class, () -> reader.readFile(getFileUri("data/invalid_file.txt")));
     }

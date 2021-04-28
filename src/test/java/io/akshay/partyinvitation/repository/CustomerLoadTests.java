@@ -1,7 +1,8 @@
 package io.akshay.partyinvitation.repository;
 
-import io.akshay.partyinvitation.ConsoleApplication;
+import io.akshay.partyinvitation.InvitationApplication;
 import io.akshay.partyinvitation.exception.InvitationRuntimeException;
+import io.akshay.partyinvitation.io.FileReader;
 import io.akshay.partyinvitation.models.Customer;
 import io.akshay.partyinvitation.serialization.reader.Parser;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = ConsoleApplication.class)
+@SpringBootTest(classes = InvitationApplication.class)
 public class CustomerLoadTests {
 
     @Autowired

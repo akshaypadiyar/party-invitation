@@ -14,7 +14,7 @@
     <name>party-invitation</name>
     <description>Identifies customers for party</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>14</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -74,6 +74,24 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>web</id>
+            <properties>
+                <entry.point>io.akshay.partyinvitation.WebApplication</entry.point>
+            </properties>
+        </profile>
+        <profile>
+            <id>console</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <entry.point>io.akshay.partyinvitation.InvitationApplication</entry.point>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -86,14 +104,15 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <mainClass>io.akshay.partyinvitation.WebApplication</mainClass>
+                    <mainClass>${entry.point}</mainClass>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
                 <configuration>
-                    <release>16</release>
+                    <argLine>--enable-preview</argLine>
                 </configuration>
             </plugin>
         </plugins>

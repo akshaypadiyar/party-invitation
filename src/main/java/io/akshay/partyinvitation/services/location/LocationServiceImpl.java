@@ -13,7 +13,7 @@ import static io.akshay.partyinvitation.services.location.DistanceConverters.nop
 @Service
 public class LocationServiceImpl implements LocationService {
 
-    private DistanceConverter distanceConverter;
+    private final DistanceConverter distanceConverter;
 
     public LocationServiceImpl(DistanceConverter distanceConverter) {
         this.distanceConverter = distanceConverter != null ? distanceConverter : DistanceConverters.nop();

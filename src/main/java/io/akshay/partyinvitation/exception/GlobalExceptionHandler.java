@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     /**
-     * Responds to user with appropriate error message & status in case of any runtime exceptions
+     * Responds to user with appropriate error message and status in case of any runtime exceptions
      *
      * @param exception {@link InvitationRuntimeException} to be reported
      * @param webRequest  Request for which error occurred

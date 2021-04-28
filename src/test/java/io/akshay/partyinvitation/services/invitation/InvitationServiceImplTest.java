@@ -34,7 +34,7 @@ class InvitationServiceImplTest {
 
         customerRepository = mock(CustomerRepository.class);
         filterStrategy = mock(Filter.class);
-        sortingStrategy = Comparator.comparing(Customer::getName);
+        sortingStrategy = (c1, c2) -> Comparator.comparing(Customer::getName).compare(c1, c2);
 
         when(customerRepository.load()).thenReturn(sampleCustomers);
 

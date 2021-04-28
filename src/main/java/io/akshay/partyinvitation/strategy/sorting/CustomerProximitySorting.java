@@ -12,8 +12,8 @@ import java.util.Comparator;
  */
 public class CustomerProximitySorting implements Comparator<Customer> {
 
-    private EventLocationProvider eventLocationProvider;
-    private LocationService locationService;
+    private final EventLocationProvider eventLocationProvider;
+    private final LocationService locationService;
 
     public CustomerProximitySorting(
             EventLocationProvider eventLocationProvider,
@@ -38,7 +38,7 @@ public class CustomerProximitySorting implements Comparator<Customer> {
     }
 
     /**
-     * Calculates distance between given location & event location
+     * Calculates distance between given location and event location
      *
      * @param location {@link Location} Coordinates of the location to calculate distance
      * @return Distance in Kms from the reference location

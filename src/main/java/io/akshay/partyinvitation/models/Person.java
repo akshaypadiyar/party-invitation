@@ -19,4 +19,10 @@ public interface Person {
      * @return Name
      */
     String getName();
+
+    /**
+     * Get location of the person
+     * @return {@link Location} of the person
+     */
+    Location getLocation();
 }

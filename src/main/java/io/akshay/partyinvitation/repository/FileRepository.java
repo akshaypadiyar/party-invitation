@@ -1,6 +1,7 @@
 package io.akshay.partyinvitation.repository;
 
 import io.akshay.partyinvitation.exception.InvitationRuntimeException;
+import io.akshay.partyinvitation.io.FileReader;
 import io.akshay.partyinvitation.models.Customer;
 import io.akshay.partyinvitation.serialization.reader.Parser;
 import lombok.SneakyThrows;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
-import java.nio.charset.Charset;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,17 +25,15 @@ import java.util.stream.Collectors;
 @Service
 public class FileRepository implements CustomerRepository {
 
-    private FileReader reader;
-    private String fileEncoding;
-    private Parser<Customer> parser;
-
-    private String filePath;
+    private final FileReader reader;
+    private final Parser<Customer> parser;
+    private final String dataSource;
 
     public FileRepository(@NonNull final FileReader reader,
                           @Value("${customers.data.source}") final String dataSource,
                           @NonNull final Parser<Customer> parser) {
         this.reader = reader;
-        this.filePath = dataSource;
+        this.dataSource = dataSource;
         this.parser = parser;
     }
 
@@ -48,19 +47,19 @@ public class FileRepository implements CustomerRepository {
     public List<Customer> load() throws InvitationRuntimeException {
         try {
             return reader
-                    .readFile(getFilePath())
+                    .readFile(getDataSource())
                     .stream()
                     .map(this::parse)
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            log.error("Error while loading customers from file {}", filePath);
-            throw new InvitationRuntimeException("Error while loading customers from repository", e);
+            log.error("Error loading customers from file {}", dataSource);
+            throw new InvitationRuntimeException("Error loading customers from repository", e);
         }
     }
 
-    private URI getFilePath() throws IOException {
-        return new ClassPathResource(this.filePath).getURI();
+    private URI getDataSource() throws IOException {
+        return new ClassPathResource(dataSource).getURI();
     }
 
     @SneakyThrows

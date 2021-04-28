@@ -50,5 +50,16 @@ class LocationFilteringTest {
 
     }
 
+    @Test
+    void testNegativeRangeDefaultstoZero(){
+        filtering = new LocationFiltering(locationService, eventLocationProvider, -100);
+        Customer customer = TestUtils.createCustomer(1, "Test", 53.33, -6.25);
+
+        assertAll(
+                () -> assertFalse(filtering.test(customer)),
+                () -> verify(locationService, times(1)).distanceBetween(any(Location.class), any(Location.class)),
+                () -> verify(eventLocationProvider, times(1)).get());
+
+    }
 
 }

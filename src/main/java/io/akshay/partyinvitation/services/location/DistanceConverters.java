@@ -1,5 +1,8 @@
 package io.akshay.partyinvitation.services.location;
 
+/**
+ * Collection of all distance converters
+ */
 public class DistanceConverters {
 
     private static final double KM_TO_MILE_RATIO = 0.621371;

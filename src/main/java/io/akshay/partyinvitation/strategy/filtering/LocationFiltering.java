@@ -26,7 +26,7 @@ public class LocationFiltering implements Filter<Customer> {
                              @Value("${customers.filtering.location.range:100}") final long range) {
         this.locationService = locationService;
         this.eventLocationProvider = eventLocationProvider;
-        this.range = range;
+        this.range = Math.max(0, range);
     }
 
     @Override
