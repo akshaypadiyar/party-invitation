@@ -64,8 +64,6 @@ When running in console mode, the output is generated in **\<project_dir\>/outpu
 >A sample output with default configuration.  
 (All customer names & ID within 100kms of given location, sorted by customer id ascending order)
 
-## Output
-
 ```
 [
   {
